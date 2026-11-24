@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="uz">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAKON UY-JOY — O‘zbekistondagi Zamonaviy Uylar, Kvartiralar va Kottedjlar Portali</title>
+    <meta name="description"
+        content="MAKON UY-JOY — Toshkent va butun O‘zbekiston bo‘ylab orzuyingizdagi xonadon, hovli va yangi binolarni eng qulay narxda toping. Narxlar, aniq joylashuv xaritasi, fotogalereya va ipoteka kalkulyatori!">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome 6.5.1 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Asosiy Stil Fayli -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body data-theme="light">
+
+    <!-- ==================== 1. YUQORI MA'LUMOT SATRI (TOPBAR) ==================== -->
+    <div class="top-bar">
+        <div class="container top-bar-container">
+            <div class="top-bar-left">
+                <span><i class="fa-solid fa-location-dot"></i> Bosh ofis: Toshkent sh., Mirobod tumani, Amir Temur shoh ko‘chasi, 45</span>
+                <span class="top-bar-divider">|</span>
+                <span><i class="fa-regular fa-clock"></i> Ish tartibi: Dush - Yak, 09:00 - 20:00</span>
+            </div>
+            <div class="top-bar-right">
+                <a href="tel:+998712005577" class="phone-link"><i class="fa-solid fa-phone"></i> +998 (71) 200-55-77</a>
+                <button class="theme-switch-btn" id="themeToggleBtn" title="Rejimni o‘zgartirish">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== 2. ASOSIY NAVIGATSIYA (HEADER) ==================== -->
+    <header class="main-header" id="mainHeader">
+        <div class="container header-container">
+            <!-- LOGO -->
+            <a href="#home" class="logo">
+                <div class="logo-icon">
+                    <i class="fa-solid fa-city"></i>
+                </div>
+                <div class="logo-text">
+                    <span class="logo-title">MAKON<span class="accent-color">UY</span></span>
+                    <span class="logo-subtitle">KO‘CHMAS MULK AGENTLIGI</span>
+                </div>
+            </a>
+
+            <!-- NAV MENU -->
+            <nav class="nav-menu" id="navMenu">
+                <a href="#home" class="nav-link active">Bosh Sahifa</a>
+                <a href="#properties" class="nav-link">Barcha Uylar</a>
+                <a href="#newProjects" class="nav-link">Yangi Binolar</a>
+                <a href="#locations" class="nav-link">Tumanlar & Xarita</a>
+                <a href="#calculator" class="nav-link">Ipoteka Kalkulyatori</a>
+                <a href="#reviews" class="nav-link">Mijozlar Fikri</a>
+                <a href="#contact" class="nav-link">Bog‘lanish</a>
+            </nav>
+
+            <!-- ACTION BUTTONS -->
+            <div class="header-actions">
+                <button class="fav-btn" id="favToggleBtn" title="Tanlangan uylar">
+                    <i class="fa-solid fa-heart"></i>
+                    <span class="fav-badge" id="favCount">0</span>
+                </button>
+                <button class="btn btn-primary" onclick="openAddPropertyModal()">
+                    <i class="fa-solid fa-plus-circle"></i> E’lon Berish
+                </button>
+                <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menyu">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ==================== 3. HERO BANNER & INTERAKTIV FILTER ==================== -->
+    <section class="hero-section" id="home">
+        <div class="hero-overlay"></div>
+        <div class="container hero-content">
+            <div class="hero-badge">
+                <i class="fa-solid fa-shield-halved"></i> 100% Rasmiy va Huquqiy Kafolatlangan Uylar
+            </div>
+            <h1 class="hero-title">
+                O‘zbekistonda <span class="gradient-text">Orzuingizdagi Uyni</span> Ishonch Bilan Toping!
+            </h1>
+            <p class="hero-desc">
+                Toshkent, Samarqand va boshqa shaharlarning markazidan shinam kvartiralar, yangi bino (novostroyka), hashamatli hovli va kottedjlar.
+                Haqiqiy fotosuratlar, aniq joylashuv xaritasi va eng arzon narxlar!
+            </p>
+
+            <!-- KATTA QIDIRUV VA FILTER PANELI -->
+            <div class="search-filter-card">
+                <!-- SOTUV YOKI IJARA TABS -->
+                <div class="deal-type-tabs">
+                    <button class="deal-tab active" data-deal="sale" onclick="setDealType('sale')">
+                        <i class="fa-solid fa-key"></i> Sotib Olish (Sotuv)
+                    </button>
+                    <button class="deal-tab" data-deal="rent" onclick="setDealType('rent')">
+                        <i class="fa-solid fa-calendar-check"></i> Ijara (Oylik)
+                    </button>
+                </div>
+
+                <!-- FORM GRID -->
+                <div class="filter-inputs-grid">
+                    <!-- 1. Shahar / Tuman -->
+                    <div class="filter-group">
+                        <label><i class="fa-solid fa-location-dot"></i> Shahar va Tuman:</label>
+                        <select id="filterDistrict">
+                            <option value="all">Barcha Tumanlar (Toshkent & Region)</option>
+                            <option value="Mirzo Ulug‘bek">Mirzo Ulug‘bek tumani</option>
+                            <option value="Chilonzor">Chilonzor tumani</option>
+                            <option value="Yunusobod">Yunusobod tumani</option>
+                            <option value="Mirobod">Mirobod tumani</option>
+                            <option value="Shayxontohur">Shayxontohur (Toshkent City)</option>
+                            <option value="Yakkasaroy">Yakkasaroy tumani</option>
+                            <option value="Yashnobod">Yashnobod tumani</option>
+                            <option value="Samarqand">Samarqand shahri</option>
+                        </select>
+                    </div>
+
+                    <!-- 2. Mulk turi -->
+                    <div class="filter-group">
+                        <label><i class="fa-solid fa-building"></i> Mulk Turi:</label>
+                        <select id="filterType">
+                            <option value="all">Barcha Turlar</option>
+                            <option value="apartment">Yangi Bino (Kvartira)</option>
+                            <option value="secondary">Ikkilamchi Kvartira</option>
+                            <option value="house">Hovli / Kottedj</option>
+                            <option value="villa">Elita Villa & Dacha</option>
+                        </select>
+                    </div>
+
+                    <!-- 3. Xonalar soni -->
+                    <div class="filter-group">
+                        <label><i class="fa-solid fa-door-open"></i> Xonalar Soni:</label>
+                        <select id="filterRooms">
+                            <option value="all">Ixtiyoriy</option>
+                            <option value="1">1 xonali</option>
+                            <option value="2">2 xonali</option>
+                            <option value="3">3 xonali</option>
+                            <option value="4">4 xonali</option>
+                            <option value="5+">5+ xonali</option>
+                        </select>
+                    </div>
+
+                    <!-- 4. Narx diapazoni ($) -->
+                    <div class="filter-group">
+                        <label><i class="fa-solid fa-dollar-sign"></i> Maksimal Narx ($):</label>
+                        <select id="filterPriceMax">
+                            <option value="all">Cheklovlarsiz</option>
+                            <option value="40000">40 000 $ gacha</option>
+                            <option value="60000">60 000 $ gacha</option>
+                            <option value="90000">90 000 $ gacha</option>
+                            <option value="150000">150 000 $ gacha</option>
+                            <option value="300000">300 000 $ gacha</option>
+                            <option value="500000">500 000 $ gacha</option>
+                        </select>
+                    </div>
+
+                    <!-- QIDIRISH TUGMASI -->
+                    <div class="filter-submit-group">
+                        <button class="btn btn-search btn-block" onclick="applyMainFilter()">
+                            <i class="fa-solid fa-magnifying-glass"></i> Qidirish
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TEZKOR STATISTIKA -->
+            <div class="hero-stats-row">
+                <div class="h-stat-item">
+                    <strong class="stat-number">1 450+</strong>
+                    <span>Sotuvdagi Xonadonlar</span>
+                </div>
+                <div class="stat-separator"></div>
+                <div class="h-stat-item">
+                    <strong class="stat-number">48+</strong>
+                    <span>Zamonaviy Turar-joy Majmualari</span>
+                </div>
+                <div class="stat-separator"></div>
+                <div class="h-stat-item">
+                    <strong class="stat-number">0%</strong>
+                    <span>Ortiqcha Xarajat & Komissiya</span>
+                </div>
+                <div class="stat-separator"></div>
+                <div class="h-stat-item">
+                    <strong class="stat-number">9 800+</strong>
+                    <span>Yangi Uyga Ko‘chgan Oilalar</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== 4. SARALASH VA ASOSIY KATALOG (PROPERTIES) ==================== -->
+    <section class="properties-section" id="properties">
+        <div class="container">
+            <div class="section-title-wrap">
+                <div>
+                    <span class="badge-sub"><i class="fa-solid fa-house-chimney"></i> Uylar Katalogi</span>
+                    <h2 class="section-heading">ENG SO‘NGGI <span class="accent-color">UY VA KVARTIRALAR</span></h2>
+                    <p class="section-lead">Fotosuratlari, aniq manzili va narxi keltirilgan sara xonadonlar.</p>
+                </div>
+
+                <!-- TEZKOR KATEGORIYA TUGMALARI -->
+                <div class="quick-category-tabs" id="categoryTabs">
+                    <button class="cat-pill active" data-cat="all" onclick="filterByCategory('all')">Barchasi</button>
+                    <button class="cat-pill" data-cat="apartment" onclick="filterByCategory('apartment')">Yangi Binolar (Novostroyka)</button>
+                    <button class="cat-pill" data-cat="house" onclick="filterByCategory('house')">Hovli & Kottedjlar</button>
+                    <button class="cat-pill" data-cat="villa" onclick="filterByCategory('villa')">Hashamatli Villalar</button>
+                    <button class="cat-pill" data-cat="budget" onclick="filterByCategory('budget')">Hamyonbop (Arzon)</button>
+                </div>
+            </div>
+
+            <!-- SORTING BAR VA NATIJALAR SONI -->
+            <div class="catalog-control-bar">
+                <div class="results-count">
+                    Topilgan uylar: <strong id="resultsCount">12 ta</strong>
+                </div>
+                <div class="sort-actions">
+                    <label for="sortSelect"><i class="fa-solid fa-arrow-down-wide-short"></i> Saralash:</label>
+                    <select id="sortSelect" onchange="handleSortChange(this.value)">
+                        <option value="newest" selected>Eng yangilari</option>
+                        <option value="price-asc">Narxi: Avval arzonlari</option>
+                        <option value="price-desc">Narxi: Avval qimmatlari</option>
+                        <option value="area-desc">Kattaligi: Maydoni bo‘yicha</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- UYLAR KARTALARI GRID (script.js orqali to'ldiriladi) -->
+            <div class="properties-grid" id="propertiesGrid">
+                <!-- Javascript dinamik joylashtiradi -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== 5. YANGI TURAR JOY MAJMUALARI (NOVOGORODOK / PROJECTS) ==================== -->
+    <section class="projects-section" id="newProjects">
+        <div class="container">
+            <div class="section-title-wrap text-center">
+                <span class="badge-sub"><i class="fa-solid fa-city"></i> Qurilish Loyihalari</span>
+                <h2 class="section-heading">IShonchli Quruvchilardan <span class="accent-color">Yangi Majmualar</span></h2>
+                <p class="section-lead">Bo‘lib to‘lash (muddatli to‘lov 0%) va ipoteka imkoniyatiga ega yangi turar-joylar.</p>
+            </div>
+
+            <div class="projects-grid">
+                <!-- Project 1: Tashkent City Boulevard -->
+                <div class="project-card">
+                    <div class="project-img-box">
+                        <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=800&q=80"
+                            alt="Tashkent City Gardens">
+                        <span class="project-badge">Toshkent Markazi</span>
+                        <div class="project-overlay-info">
+                            <span class="dev-name"><i class="fa-solid fa-building-circle-check"></i> Murad Buildings</span>
+                            <h4>Gardens Residence</h4>
+                        </div>
+                    </div>
+                    <div class="project-body">
+                        <div class="project-meta-row">
+                            <span><i class="fa-solid fa-location-dot"></i> Shayxontohur tumani</span>
+                            <span class="status-green">Topshirish: 2025</span>
+                        </div>
+                        <p class="project-desc">Yopiq hovli, yerosti 2 qavatli parkovkasi va xususiy bog‘i bo‘lgan hashamatli xonadonlar.</p>
+                        <div class="project-footer">
+                            <div class="price-from">Boshlang‘ich narx: <strong>1 100 $/m² dan</strong></div>
+                            <button class="btn btn-outline btn-sm" onclick="showProjectDetails('Gardens Residence')">Batafsil</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2: Mirzo Ulug'bek Park -->
+                <div class="project-card">
+                    <div class="project-img-box">
+                        <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80"
+                            alt="Green Park Residence">
+                        <span class="project-badge">Eco Majmua</span>
+                        <div class="project-overlay-info">
+                            <span class="dev-name"><i class="fa-solid fa-building-circle-check"></i> Golden House</span>
+                            <h4>Green Park Residence</h4>
+                        </div>
+                    </div>
+                    <div class="project-body">
+                        <div class="project-meta-row">
+                            <span><i class="fa-solid fa-location-dot"></i> Mirzo Ulug‘bek tumani</span>
+                            <span class="status-green">Tayyor xonadonlar</span>
+                        </div>
+                        <p class="project-desc">Botanika bog‘i yaqinida joylashgan toza havoli, zamonaviy maktab va bolalar bog‘chali hudud.</p>
+                        <div class="project-footer">
+                            <div class="price-from">Boshlang‘ich narx: <strong>850 $/m² dan</strong></div>
+                            <button class="btn btn-outline btn-sm" onclick="showProjectDetails('Green Park Residence')">Batafsil</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3: Yunusobod Hills -->
+                <div class="project-card">
+                    <div class="project-img-box">
+                        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80"
+                            alt="Yunusabad Heights">
+                        <span class="project-badge">Muddatli to‘lov 0%</span>
+                        <div class="project-overlay-info">
+                            <span class="dev-name"><i class="fa-solid fa-building-circle-check"></i> NRG Uzbekistan</span>
+                            <h4>NRG Yunusobod Hills</h4>
+                        </div>
+                    </div>
+                    <div class="project-body">
+                        <div class="project-meta-row">
+                            <span><i class="fa-solid fa-location-dot"></i> Yunusobod, 19-mavze</span>
+                            <span class="status-green">Ipoteka 17%</span>
+                        </div>
+                        <p class="project-desc">Metro bekatiga piyoda 5 daqiqalik yo‘l. Smart Home (aqlli uy) texnologiyasi bilan jihozlangan.</p>
+                        <div class="project-footer">
+                            <div class="price-from">Boshlang‘ich narx: <strong>720 $/m² dan</strong></div>
+                            <button class="btn btn-outline btn-sm" onclick="showProjectDetails('NRG Yunusobod Hills')">Batafsil</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== 6. INTERAKTIV JOYLAShUV & XARITA BO'LIMI (LOCATIONS) ==================== -->
+    <section class="locations-section" id="locations">
+        <div class="container">
+            <div class="section-title-wrap">
+                <div>
+                    <span class="badge-sub"><i class="fa-solid fa-map-location-dot"></i> Manzillar</span>
+                    <h2 class="section-heading">TUMANLAR BO‘YICHA <span class="accent-color">UY BOZORI</span></h2>
+                    <p class="section-lead">Qaysi hudud sizga qulayroq? O‘zingizga ma’qul tumandagi barcha uylarni bitta bosish bilan ko‘ring.</p>
+                </div>
+            </div>
+
+            <div class="locations-content-grid">
+                <!-- Tumanlar ro'yxati -->
+                <div class="districts-list">
+                    <div class="district-box" onclick="quickFilterDistrict('Mirzo Ulug‘bek')">
+                        <div class="dist-icon"><i class="fa-solid fa-tree"></i></div>
+                        <div class="dist-info">
+                            <h4>Mirzo Ulug‘bek tumani</h4>
+                            <p>Yashil bog‘lar, nufuzli maktab va oliygohlar</p>
+                        </div>
+                        <span class="dist-count">240+ Uy</span>
+                    </div>
+
+                    <div class="district-box" onclick="quickFilterDistrict('Shayxontohur')">
+                        <div class="dist-icon"><i class="fa-solid fa-landmark"></i></div>
+                        <div class="dist-info">
+                            <h4>Shayxontohur & Tashkent City</h4>
+                            <p>Poytaxt markazi, biznes markazlar va hashamat</p>
+                        </div>
+                        <span class="dist-count">190+ Uy</span>
+                    </div>
+
+                    <div class="district-box" onclick="quickFilterDistrict('Chilonzor')">
+                        <div class="dist-icon"><i class="fa-solid fa-train-subway"></i></div>
+                        <div class="dist-info">
+                            <h4>Chilonzor tumani</h4>
+                            <p>Qulay metro infratuzilmasi, bozorlar va hamyonbop narxlar</p>
+                        </div>
+                        <span class="dist-count">310+ Uy</span>
+                    </div>
+
+                    <div class="district-box" onclick="quickFilterDistrict('Yunusobod')">
+                        <div class="dist-icon"><i class="fa-solid fa-building"></i></div>
+                        <div class="dist-info">
+                            <h4>Yunusobod tumani</h4>
+                            <p>Rivojlangan ko‘ngilochar markazlar va xiyobonlar</p>
+                        </div>
+                        <span class="dist-count">280+ Uy</span>
+                    </div>
+
+                    <div class="district-box" onclick="quickFilterDistrict('Mirobod')">
+                        <div class="dist-icon"><i class="fa-solid fa-gem"></i></div>
+                        <div class="dist-info">
+                            <h4>Mirobod (Oybek & Gospitalniy)</h4>
+                            <p>Poytaxtning eng nufuzli restoran va xiyobonlari</p>
+                        </div>
+                        <span class="dist-count">165+ Uy</span>
+                    </div>
+                </div>
+
+                <!-- Interaktiv Xarita Simulyatori -->
+                <div class="map-preview-card">
+                    <div class="map-header">
+                        <div class="map-header-title">
+                            <i class="fa-solid fa-map-pin"></i> <span>Toshkent Shahri Interaktiv Xaritasi</span>
+                        </div>
+                        <span class="live-dot-pulse">Faol nuqtalar: 12</span>
+                    </div>
+                    <div class="map-canvas-mock">
+                        <!-- Xarita fon tasviri -->
+                        <div class="map-grid-lines"></div>
+
+                        <!-- Interaktiv pinlar -->
+                        <div class="map-pin pin-1" onclick="previewPinHome('Tashkent City Gardens', '155 000 $')">
+                            <span class="pin-price">155 000 $</span>
+                            <div class="pin-pulse"></div>
+                        </div>
+                        <div class="map-pin pin-2" onclick="previewPinHome('Chilonzor 3 xonali', '62 000 $')">
+                            <span class="pin-price">62 000 $</span>
+                            <div class="pin-pulse"></div>
+                        </div>
+                        <div class="map-pin pin-3" onclick="previewPinHome('Yunusobod Yangi Kvartira', '74 000 $')">
+                            <span class="pin-price">74 000 $</span>
+                            <div class="pin-pulse"></div>
+                        </div>
+                        <div class="map-pin pin-4" onclick="previewPinHome('Mirobod Elita Pentxaus', '240 000 $')">
+                            <span class="pin-price">240 000 $</span>
+                            <div class="pin-pulse"></div>
+                        </div>
+                        <div class="map-pin pin-5" onclick="previewPinHome('Qibray Hovli Kottedj', '180 000 $')">
+                            <span class="pin-price">180 000 $</span>
+                            <div class="pin-pulse"></div>
+                        </div>
+
+                        <!-- Xarita ma'lumot qutisi -->
+                        <div class="map-pin-detail-box" id="mapPinDetailBox">
+                            <div id="mapDetailText">Xaritadagi istalgan nuqtani bosing va uyni ko‘ring</div>
+                        </div>
+                    </div>
+                    <div class="map-footer-note">
+                        <i class="fa-solid fa-info-circle"></i> Barcha uylar kadastr hujjatlariga va geo-joylashuv koordinatalariga ega.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== 7. IPOTEKA KALKULYATORI (CALCULATOR) ==================== -->
+    <section class="calc-section" id="calculator">
+        <div class="container">
+            <div class="calc-card">
+                <div class="calc-header text-center">
+                    <span class="badge-sub"><i class="fa-solid fa-calculator"></i> Moliyaviy Hisob</span>
+                    <h2 class="section-heading">QULAY <span class="accent-color">IPOTEKA KALKULYATORI</span></h2>
+                    <p class="section-lead">Xonadon narxi va boshlang‘ich to‘lovingizga qarab oylik to‘lovni hoziroq aniq hisoblang.</p>
+                </div>
+
+                <div class="calc-grid">
+                    <!-- SOZLAMALAR -->
+                    <div class="calc-inputs-pane">
+                        <!-- 1. Uy narxi -->
+                        <div class="calc-group">
+                            <div class="calc-group-header">
+                                <label for="calcHomePrice">Uyning Qiymati ($):</label>
+                                <strong id="calcPriceDisplay">70 000 $</strong>
+                            </div>
+                            <input type="range" id="calcHomePrice" min="20000" max="300000" step="5000" value="70000"
+                                oninput="calculateMortgage()">
+                            <div class="range-limits">
+                                <span>20 000 $</span>
+                                <span>300 000 $</span>
+                            </div>
+                        </div>
+
+                        <!-- 2. Boshlang'ich to'lov (%) -->
+                        <div class="calc-group">
+                            <div class="calc-group-header">
+                                <label for="calcInitialPct">Boshlang‘ich To‘lov:</label>
+                                <strong id="calcInitialDisplay">25% (17 500 $)</strong>
+                            </div>
+                            <input type="range" id="calcInitialPct" min="15" max="60" step="5" value="25"
+                                oninput="calculateMortgage()">
+                            <div class="range-limits">
+                                <span>15%</span>
+                                <span>60%</span>
+                            </div>
+                        </div>
+
+                        <!-- 3. Kredit muddati (yillar) -->
+                        <div class="calc-group">
+                            <div class="calc-group-header">
+                                <label for="calcPeriodYears">Kredit Muddati (yil):</label>
+                                <strong id="calcPeriodDisplay">15 yil</strong>
+                            </div>
+                            <input type="range" id="calcPeriodYears" min="5" max="25" step="1" value="15"
+                                oninput="calculateMortgage()">
+                            <div class="range-limits">
+                                <span>5 yil</span>
+                                <span>25 yil</span>
+                            </div>
+                        </div>
+
+                        <!-- 4. Yillik foiz stavkasi (%) -->
+                        <div class="calc-group">
+                            <div class="calc-group-header">
+                                <label for="calcRatePct">Bank Yillik Foiz Stavkasi:</label>
+                                <strong id="calcRateDisplay">17.5%</strong>
+                            </div>
+                            <input type="range" id="calcRatePct" min="12" max="24" step="0.5" value="17.5"
+                                oninput="calculateMortgage()">
+                            <div class="range-limits">
+                                <span>12%</span>
+                                <span>24%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- HISOB-KITOB NATIJALARI KARTASI -->
+                    <div class="calc-result-pane">
+                        <div class="result-box-main">
+                            <span class="res-sub">Taxminiy Oylik To‘lov:</span>
+                            <div class="res-monthly" id="calcMonthlyUsd">792 $ / oyiga</div>
+                            <div class="res-monthly-uzs" id="calcMonthlyUzs">≈ 10 137 000 so‘m / oyiga</div>
+                        </div>
+
+                        <div class="result-breakdown">
+                            <div class="res-row">
+                                <span><i class="fa-solid fa-money-bill-transfer"></i> Kredit Miqdori:</span>
+                                <strong id="calcLoanAmount">52 500 $</strong>
+                            </div>
+                            <div class="res-row">
+                                <span><i class="fa-solid fa-wallet"></i> Boshlang‘ich Mablag‘:</span>
+                                <strong id="calcInitialSum">17 500 $</strong>
+                            </div>
+                            <div class="res-row">
+                                <span><i class="fa-solid fa-percent"></i> Jami Hisoblangan Foiz:</span>
+                                <strong id="calcTotalInterest">90 060 $</strong>
+                            </div>
+                            <div class="res-row">
+                                <span><i class="fa-solid fa-coins"></i> Umumiy Qaytarish Summasi:</span>
+                                <strong id="calcTotalPayment">142 560 $</strong>
+                            </div>
+                        </div>
+
+                        <button class="btn btn-primary btn-block" onclick="requestMortgageConsultation()">
+                            <i class="fa-solid fa-file-signature"></i> Ipoteka Uchun Ariza Qoldirish
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== 8. MIJOZLAR SHARHLARI (REVIEWS) ==================== -->
+    <section class="reviews-section" id="reviews">
+        <div class="container">
+            <div class="section-title-wrap text-center">
+                <span class="badge-sub"><i class="fa-solid fa-star"></i> Mamnun Mijozlar</span>
+                <h2 class="section-heading">MIJOZLARIMIZ BIZ HAQIMIZDA <span class="accent-color">NIMA DEYDI?</span></h2>
+                <p class="section-lead">Biz orqali yangi uy sotib olgan yoki sotgan yurtdoshlarimiz fikrlari.</p>
+            </div>
+
+            <div class="reviews-grid">
+                <div class="review-card">
+                    <div class="review-stars">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="review-text">
+                        "Mirzo Ulug‘bek tumanidan 3 xonali yangi kvartira sotib oldik. Barcha hujjatlar 2 kun ichida notariusda rasmiylashtirildi. Agentlikka katta rahmat!"
+                    </p>
+                    <div class="reviewer-meta">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80"
+                            alt="Jahongir Olimov">
+                        <div>
+                            <h4>Jahongir Olimov</h4>
+                            <small>Toshkent sh., Tadbirkor</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="review-card">
+                    <div class="review-stars">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="review-text">
+                        "Uyni sotish bo‘yicha e’lon bergan edim. 1 hafta o‘tmasdan haqiqiy xaridor topib berishdi. Fotosuratlar va manzil juda chiroyli joylashtirilgan ekan."
+                    </p>
+                    <div class="reviewer-meta">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=150&q=80"
+                            alt="Dilnoza Rahimova">
+                        <div>
+                            <h4>Dilnoza Rahimova</h4>
+                            <small>Mirobod tumani, Shifokor</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="review-card">
+                    <div class="review-stars">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="review-text">
+                        "Ipoteka kalkulyatori orqali oylik to‘lovni aniq hisoblab, Yunusoboddan qulay xonadon tanladik. Bank bilan bog‘liq barcha ishlarda amaliy yordam berishdi."
+                    </p>
+                    <div class="reviewer-meta">
+                        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=150&q=80"
+                            alt="Bekzod Rustamov">
+                        <div>
+                            <h4>Bekzod Rustamov</h4>
+                            <small>Dasturchi (IT Mutaxassis)</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== 9. BOG'LANISH VA TEZ KONSULTATSIYA (CONTACT) ==================== -->
+    <section class="contact-section" id="contact">
+        <div class="container">
+            <div class="contact-card">
+                <div class="contact-info-col">
+                    <span class="badge-sub"><i class="fa-solid fa-headset"></i> Bepul Maslahat</span>
+                    <h2>Mutaxassis Bilan <span class="accent-color">Bog‘laning</span></h2>
+                    <p>Uylarning narxlari, chegirmalar yoki joylashuv bo‘yicha savollaringiz bormi? Telefon raqamingizni qoldiring, 5 daqiqa ichida sizga qo‘ng‘iroq qilamiz!</p>
+
+                    <div class="contact-direct-items">
+                        <div class="c-item">
+                            <i class="fa-solid fa-phone-volume"></i>
+                            <div>
+                                <span>Tezkor aloqa raqami:</span>
+                                <strong>+998 (71) 200-55-77</strong>
+                            </div>
+                        </div>
+                        <div class="c-item">
+                            <i class="fa-brands fa-telegram"></i>
+                            <div>
+                                <span>Telegram kanalimiz:</span>
+                                <strong>@makon_uyjoy_uz</strong>
+                            </div>
+                        </div>
+                        <div class="c-item">
+                            <i class="fa-solid fa-envelope"></i>
+                            <div>
+                                <span>Elektron pochta:</span>
+                                <strong>info@makonuy.uz</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-form-col">
+                    <form id="consultationForm" onsubmit="handleConsultationSubmit(event)">
+                        <div class="form-group">
+                            <label for="cName">Ismingiz:</label>
+                            <input type="text" id="cName" placeholder="Masalan: Sardorbek" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="cPhone">Telefon raqamingiz:</label>
+                            <input type="tel" id="cPhone" placeholder="+998 (90) 123-45-67" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="cInterest">Sizni nima qiziqtirmoqda?</label>
+                            <select id="cInterest">
+                                <option value="buy">Xonadon sotib olish</option>
+                                <option value="sell">O‘z uyimni sotish</option>
+                                <option value="mortgage">Ipoteka krediti olish</option>
+                                <option value="rent">Ijara masalasi</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block btn-lg">
+                            <i class="fa-solid fa-paper-plane"></i> Bepul Konsultatsiya Olish
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== 10. FOOTER ==================== -->
+    <footer class="main-footer">
+        <div class="container footer-content-grid">
+            <div class="footer-col brand-col">
+                <a href="#home" class="logo">
+                    <div class="logo-icon"><i class="fa-solid fa-city"></i></div>
+                    <div class="logo-text">
+                        <span class="logo-title">MAKON<span class="accent-color">UY</span></span>
+                        <span class="logo-subtitle">KO‘CHMAS MULK AGENTLIGI</span>
+                    </div>
+                </a>
+                <p class="footer-text">
+                    O‘zbekistonning eng ishonchli ko‘chmas mulk platformasi. Toshkent va viloyatlardagi eng qulay va qonuniy uylar bazasi.
+                </p>
+                <div class="social-links">
+                    <a href="https://telegram.org" target="_blank" title="Telegram"><i class="fa-brands fa-telegram"></i></a>
+                    <a href="https://instagram.com" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://facebook.com" target="_blank" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="https://youtube.com" target="_blank" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h4>Tezkor Havolalar</h4>
+                <ul class="footer-links">
+                    <li><a href="#properties"><i class="fa-solid fa-angle-right"></i> Barcha Xonadonlar</a></li>
+                    <li><a href="#newProjects"><i class="fa-solid fa-angle-right"></i> Yangi Turar Joylar</a></li>
+                    <li><a href="#locations"><i class="fa-solid fa-angle-right"></i> Tumanlar & Xarita</a></li>
+                    <li><a href="#calculator"><i class="fa-solid fa-angle-right"></i> Ipoteka Kalkulyatori</a></li>
+                    <li><a href="#contact"><i class="fa-solid fa-angle-right"></i> Biz Bilan Bog‘lanish</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Ommabop Tumanlar</h4>
+                <ul class="footer-links">
+                    <li><a href="javascript:void(0)" onclick="quickFilterDistrict('Mirzo Ulug‘bek')"><i class="fa-solid fa-angle-right"></i> Mirzo Ulug‘bek uylari</a></li>
+                    <li><a href="javascript:void(0)" onclick="quickFilterDistrict('Chilonzor')"><i class="fa-solid fa-angle-right"></i> Chilonzor kvartiralari</a></li>
+                    <li><a href="javascript:void(0)" onclick="quickFilterDistrict('Shayxontohur')"><i class="fa-solid fa-angle-right"></i> Tashkent City majmualari</a></li>
+                    <li><a href="javascript:void(0)" onclick="quickFilterDistrict('Yunusobod')"><i class="fa-solid fa-angle-right"></i> Yunusobod xonadonlari</a></li>
+                    <li><a href="javascript:void(0)" onclick="quickFilterDistrict('Mirobod')"><i class="fa-solid fa-angle-right"></i> Mirobod hashamatli uylari</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Bosh Ofisimiz</h4>
+                <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 12px;">
+                    <i class="fa-solid fa-location-dot" style="color: var(--primary);"></i> Toshkent shahri, Mirobod tumani, Amir Temur shoh ko‘chasi, 45-uy.
+                </p>
+                <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 12px;">
+                    <i class="fa-solid fa-phone" style="color: var(--primary);"></i> +998 (71) 200-55-77
+                </p>
+                <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.6;">
+                    <i class="fa-solid fa-envelope" style="color: var(--primary);"></i> support@makonuy.uz
+                </p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="container footer-bottom-flex">
+                <div>&copy; 2026 MAKON UY-JOY. Barcha huquqlar himoyalangan.</div>
+                <div>Halol, tezkor va xavfsiz ko‘chmas mulk operatsiyalari.</div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ==================== 11. MODALLAR VA DRAWERLAR ==================== -->
+
+    <!-- A. UYNING TO'LIQ MA'LUMOTI VA FOTOGALEREYA MODALI (PROPERTY DETAIL MODAL) -->
+    <div class="modal-backdrop" id="propertyModal">
+        <div class="modal-card modal-lg">
+            <button class="modal-close" onclick="closePropertyModal()"><i class="fa-solid fa-xmark"></i></button>
+            <div id="propertyModalContent">
+                <!-- script.js to'ldiradi -->
+            </div>
+        </div>
+    </div>
+
+    <!-- B. TANLANGAN UYLAR RO'YXATI (FAVORITES DRAWER) -->
+    <div class="drawer-overlay" id="favOverlay" onclick="closeFavDrawer()"></div>
+    <div class="drawer-panel" id="favDrawer">
+        <div class="drawer-header">
+            <h3><i class="fa-solid fa-heart" style="color: #ef4444;"></i> Tanlangan Uylar (<span id="favDrawerCount">0</span>)</h3>
+            <button class="drawer-close" onclick="closeFavDrawer()"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="drawer-body" id="favItemsList">
+            <!-- script.js to'ldiradi -->
+        </div>
+        <div class="drawer-footer">
+            <button class="btn btn-primary btn-block" onclick="contactAgentAboutFavorites()">
+                <i class="fa-solid fa-phone"></i> Tanlanganlar Bo‘yicha Mutaxassisga Yuborish
+            </button>
+        </div>
+    </div>
+
+    <!-- C. E'LON BERISH MODALI (ADD PROPERTY MODAL) -->
+    <div class="modal-backdrop" id="addPropertyModal">
+        <div class="modal-card">
+            <button class="modal-close" onclick="closeAddPropertyModal()"><i class="fa-solid fa-xmark"></i></button>
+            <div class="modal-header">
+                <h2><i class="fa-solid fa-house-medical" style="color: var(--primary);"></i> Uyingizni Sotuvga Qo‘ying</h2>
+                <p>Ma’lumotlarni kiriting, e’loningiz minglab xaridorlarga zudlik bilan ko‘rsatiladi.</p>
+            </div>
+            <form id="addPropertyForm" onsubmit="handleAddPropertySubmit(event)">
+                <div class="form-group">
+                    <label>Xonadon nomi / Sarlavhasi:</label>
+                    <input type="text" id="newPropTitle" placeholder="Masalan: Chilonzorda 3 xonali evrota'mirli kvartira" required>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Tuman / Shahar:</label>
+                        <select id="newPropDistrict" required>
+                            <option value="Mirzo Ulug‘bek">Mirzo Ulug‘bek tumani</option>
+                            <option value="Chilonzor">Chilonzor tumani</option>
+                            <option value="Yunusobod">Yunusobod tumani</option>
+                            <option value="Mirobod">Mirobod tumani</option>
+                            <option value="Shayxontohur">Shayxontohur tumani</option>
+                            <option value="Yakkasaroy">Yakkasaroy tumani</option>
+                            <option value="Yashnobod">Yashnobod tumani</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Mulk turi:</label>
+                        <select id="newPropType" required>
+                            <option value="apartment">Yangi Bino (Kvartira)</option>
+                            <option value="secondary">Ikkilamchi Kvartira</option>
+                            <option value="house">Hovli / Kottedj</option>
+                            <option value="villa">Elita Villa</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Xonalar soni:</label>
+                        <input type="number" id="newPropRooms" min="1" max="10" value="3" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Umumiy maydoni (m²):</label>
+                        <input type="number" id="newPropArea" min="20" max="1000" value="85" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Narxi ($ da):</label>
+                        <input type="number" id="newPropPrice" min="5000" max="5000000" value="65000" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Qavati / Qavatlar:</label>
+                        <input type="text" id="newPropFloor" placeholder="Masalan: 4/9" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Aniq manzili (Ko‘cha, mo‘ljal):</label>
+                    <input type="text" id="newPropAddress" placeholder="Masalan: Muqimiy ko‘chasi, Novza metro yaqinida" required>
+                </div>
+                <div class="form-group">
+                    <label>Telefon raqamingiz:</label>
+                    <input type="tel" id="newPropPhone" placeholder="+998 90 123 45 67" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block btn-lg">
+                    <i class="fa-solid fa-check-circle"></i> E’lonni Saytga Joylashtirish
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- TOAST XABARNOMALARI -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- JAVASCRIPT -->
+    <script src="script.js"></script>
+</body>
+
+</html>

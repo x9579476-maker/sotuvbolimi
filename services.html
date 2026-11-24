@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Xizmatlar va Narxlar | ShifoNur Medline Shifoxonasi</title>
+  <meta name="description" content="ShifoNur Medline klinikasining barcha xizmatlari, laboratoriya tahlillari, MRT, MSKT va Check-up paketlari rasmiy narxlari.">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .price-table-wrapper {
+      background: #ffffff;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-light);
+      box-shadow: var(--shadow-sm);
+      overflow-x: auto;
+      margin-bottom: 50px;
+    }
+    .med-price-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+    .med-price-table th {
+      background: var(--bg-subtle);
+      padding: 18px 24px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text-heading);
+      border-bottom: 2px solid var(--border-light);
+    }
+    .med-price-table td {
+      padding: 16px 24px;
+      font-size: 0.92rem;
+      border-bottom: 1px solid var(--border-light);
+      color: var(--text-body);
+    }
+    .med-price-table tr:hover td {
+      background-color: var(--primary-light);
+    }
+    .price-tag {
+      font-weight: 700;
+      color: var(--primary);
+      white-space: nowrap;
+    }
+    .service-badge {
+      display: inline-block;
+      padding: 4px 10px;
+      background: var(--bg-subtle);
+      border-radius: var(--radius-xs);
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Bar -->
+  <div class="top-bar">
+    <div class="container top-bar-inner">
+      <div class="top-bar-left">
+        <div class="top-bar-item emergency-phone">
+          <i class="fa-solid fa-phone-volume"></i>
+          <span>24/7 Tez Yordam: <strong>+998 (71) 200-03-03</strong></span>
+        </div>
+        <div class="top-bar-item">
+          <i class="fa-regular fa-clock"></i>
+          <span>Ish vaqti: 24/7 Uzluksiz</span>
+        </div>
+      </div>
+      <div class="top-bar-right">
+        <div class="top-social">
+          <a href="#"><i class="fa-brands fa-telegram"></i></a>
+          <a href="#"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="main-header">
+    <div class="container navbar">
+      <a href="index.html" class="brand-logo">
+        <div class="logo-icon-wrap"><i class="fa-solid fa-heart-pulse"></i></div>
+        <div class="logo-text-wrap"><span class="logo-name">ShifoNur <span>Medline</span></span><span class="logo-sub">Ko'p tarmoqli klinika</span></div>
+      </a>
+      <nav class="nav-menu">
+        <a href="index.html" class="nav-link">Bosh sahifa</a>
+        <a href="about.html" class="nav-link">Biz haqimizda</a>
+        <a href="departments.html" class="nav-link">Bo'limlar</a>
+        <a href="doctors.html" class="nav-link">Shifokorlar</a>
+        <a href="services.html" class="nav-link active">Narxlar & Check-up</a>
+        <a href="contact.html" class="nav-link">Aloqa</a>
+      </nav>
+      <div class="nav-cta">
+        <a href="tel:+998712000303" class="btn btn-emergency btn-sm"><i class="fa-solid fa-phone"></i><span>Tez yordam</span></a>
+        <a href="index.html#appointment-section" class="btn btn-primary btn-sm"><i class="fa-regular fa-calendar-check"></i><span>Qabulga yozilish</span></a>
+        
+        <label for="mobile-toggle" class="hamburger-label"><i class="fa-solid fa-bars"></i></label>
+      </div>
+    </div>
+  </header>
+
+  <!-- Pure CSS Mobile Drawer -->
+  <input type="checkbox" id="mobile-toggle" class="mobile-toggle-input">
+  <label for="mobile-toggle" class="mobile-overlay"></label>
+  <div class="mobile-nav-drawer">
+    <div class="mobile-drawer-header">
+      <div class="brand-logo"><div class="logo-icon-wrap"><i class="fa-solid fa-heart-pulse"></i></div><div class="logo-text-wrap"><span class="logo-name">ShifoNur <span>Med</span></span></div></div>
+      <label for="mobile-toggle" class="mobile-close-label">&times;</label>
+    </div>
+    <div class="mobile-menu-links">
+      <a href="index.html"><span>Bosh sahifa</span> <i class="fa-solid fa-chevron-right"></i></a>
+      <a href="about.html"><span>Biz haqimizda</span> <i class="fa-solid fa-chevron-right"></i></a>
+      <a href="departments.html"><span>Bo'limlar</span> <i class="fa-solid fa-chevron-right"></i></a>
+      <a href="doctors.html"><span>Shifokorlar</span> <i class="fa-solid fa-chevron-right"></i></a>
+      <a href="services.html" class="active"><span>Narxlar & Paketlar</span> <i class="fa-solid fa-chevron-right"></i></a>
+      <a href="contact.html"><span>Aloqa va Manzil</span> <i class="fa-solid fa-chevron-right"></i></a>
+    </div>
+  </div>
+
+  <!-- Page Banner -->
+  <div class="page-banner">
+    <div class="container">
+      <h1 class="page-banner-title">Xizmatlar va Narxlar</h1>
+      <div class="page-breadcrumb">
+        <a href="index.html">Bosh sahifa</a>
+        <i class="fa-solid fa-chevron-right"></i>
+        <span class="current">Narxlar & Check-up</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Check-up Packages Section -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <div class="badge-tag badge-teal">
+          <i class="fa-solid fa-cube"></i>
+          <span>Check-Up Paketlari</span>
+        </div>
+        <h2 class="section-title">Kompleks Salomatlik <span>Paketlari</span></h2>
+        <p class="section-desc">Kasalliklarni erta bosqichda aniqlash va salomatlikni to'liq tekshirish uchun qulay to'plamlar.</p>
+      </div>
+
+      <div class="pricing-grid">
+        <!-- 1 -->
+        <div class="pricing-card">
+          <div class="pricing-header">
+            <h3 class="pricing-name">Baza Check-up</h3>
+            <p class="pricing-sub">Yillik umumiy profilaktika uchun</p>
+            <div class="pricing-price">650,000 <span>so'm</span></div>
+          </div>
+          <ul class="pricing-features">
+            <li><i class="fa-solid fa-circle-check"></i> Umumiy qon va siydik tahlili</li>
+            <li><i class="fa-solid fa-circle-check"></i> Terapevt ko'rigi va xulosasi</li>
+            <li><i class="fa-solid fa-circle-check"></i> Elektrokardiogramma (EKG)</li>
+            <li><i class="fa-solid fa-circle-check"></i> Qorin bo'shlig'i a'zolari UZI</li>
+            <li><i class="fa-solid fa-circle-xmark"></i> MRT yoki MSKT tekshiruvi</li>
+          </ul>
+          <a href="index.html#appointment-section" class="btn btn-secondary pricing-btn">Qabulga Yozilish</a>
+        </div>
+
+        <!-- 2 -->
+        <div class="pricing-card featured-plan">
+          <div class="popular-badge">Eng Ommabop</div>
+          <div class="pricing-header">
+            <h3 class="pricing-name">Kardio & Tomir Check-up</h3>
+            <p class="pricing-sub">Yurak va gipertoniyadan himoya</p>
+            <div class="pricing-price">1,350,000 <span>so'm</span></div>
+          </div>
+          <ul class="pricing-features">
+            <li><i class="fa-solid fa-circle-check"></i> Barcha bioximik tahlillar</li>
+            <li><i class="fa-solid fa-circle-check"></i> Oliy toifali kardiolog ko'rigi</li>
+            <li><i class="fa-solid fa-circle-check"></i> ExoKG (yurak UZI doppler)</li>
+            <li><i class="fa-solid fa-circle-check"></i> 24 soatlik Holter monitoringi</li>
+            <li><i class="fa-solid fa-circle-check"></i> Koagulogramma (qon ivishi)</li>
+          </ul>
+          <a href="index.html#appointment-section" class="btn btn-primary pricing-btn">Qabulga Yozilish</a>
+        </div>
+
+        <!-- 3 -->
+        <div class="pricing-card">
+          <div class="pricing-header">
+            <h3 class="pricing-name">VIP To'liq Tana Skriningi</h3>
+            <p class="pricing-sub">Barcha a'zolar to'liq tekshiruvi</p>
+            <div class="pricing-price">2,800,000 <span>so'm</span></div>
+          </div>
+          <ul class="pricing-features">
+            <li><i class="fa-solid fa-circle-check"></i> 45 dan ortiq tahlillar</li>
+            <li><i class="fa-solid fa-circle-check"></i> Bosh miya va umurtqa MRT (3.0T)</li>
+            <li><i class="fa-solid fa-circle-check"></i> 5 nafar yetakchi shifokor konsultatsiyasi</li>
+            <li><i class="fa-solid fa-circle-check"></i> Qorin, qalqonsimon bez 4D UZI</li>
+            <li><i class="fa-solid fa-circle-check"></i> VIP palatada dam olish</li>
+          </ul>
+          <a href="index.html#appointment-section" class="btn btn-secondary pricing-btn">Qabulga Yozilish</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Detailed Price List Table -->
+  <section class="section section-bg-subtle">
+    <div class="container">
+      <div class="section-header">
+        <div class="badge-tag">
+          <i class="fa-solid fa-list-check"></i>
+          <span>Prays-List</span>
+        </div>
+        <h2 class="section-title">Diagnostika va Xizmatlar <span>Narxnomasi</span></h2>
+        <p class="section-desc">Klinikamizda o'rnatilgan rasmiy va shaffof narxlar ro'yxati bilan tanishing.</p>
+      </div>
+
+      <!-- Table: Diagnostika -->
+      <h3 style="font-size: 1.35rem; font-weight: 800; color: var(--text-heading); margin-bottom: 18px;">
+        <i class="fa-solid fa-dna" style="color: var(--primary); margin-right: 8px;"></i> MRT va MSKT Diagnostika
+      </h3>
+      <div class="price-table-wrapper">
+        <table class="med-price-table">
+          <thead>
+            <tr>
+              <th>Xizmat Nomi</th>
+              <th>Uskuna / Tavsif</th>
+              <th>Tayyor bo'lish vaqti</th>
+              <th>Narxi</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Bosh miya MRT (3.0 Tesla)</strong></td>
+              <td><span class="service-badge">Siemens Lumina</span> Yuqori aniqlikdagi tasvir</td>
+              <td>40 daqiqa</td>
+              <td class="price-tag">450,000 so'm</td>
+            </tr>
+            <tr>
+              <td><strong>Umurtqa pog'onasi MRT (1 soha)</strong></td>
+              <td><span class="service-badge">Siemens Lumina</span> Bo'yin, ko'krak yoki bel sohasi</td>
+              <td>40 daqiqa</td>
+              <td class="price-tag">420,000 so'm</td>
+            </tr>
+            <tr>
+              <td><strong>Ko'krak qafasi MSKT (128 kesim)</strong></td>
+              <td><span class="service-badge">Philips MSKT</span> O'pka va bronxlar skaneri</td>
+              <td>30 daqiqa</td>
+              <td class="price-tag">380,000 so'm</td>
+            </tr>
+            <tr>
+              <td><strong>Bosh miya va bo'yin tomirlari MRT angiografiyasi</strong></td>
+              <td><span class="service-badge">Siemens Lumina</span> Kontrastsiz qon tomirlari</td>
+              <td>50 daqiqa</td>
+              <td class="price-tag">520,000 so'm</td>
+            </tr>
+            <tr>
+              <td><strong>Tizza yoki chanoq bo'g'imi MRT</strong></td>
+              <td><span class="service-badge">Siemens Lumina</span> Paylar va tog'ay holati</td>
+              <td>40 daqiqa</td>
+              <td class="price-tag">430,000 so'm</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Table: Mutaxassislar qabuli -->
+      <h3 style="font-size: 1.35rem; font-weight: 800; color: var(--text-heading); margin-bottom: 18px;">
+        <i class="fa-solid fa-user-doctor" style="color: var(--secondary); margin-right: 8px;"></i> Mutaxassislar Konsultatsiyasi
+      </h3>
+      <div class="price-table-wrapper">
+        <table class="med-price-table">
+          <thead>
+            <tr>
+              <th>Shifokor Unvoni / Yo'nalish</th>
+              <th>Xizmat turi</th>
+              <th>Davomiyligi</th>
+              <th>Narxi</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Professor, Tibbiyot fanlari doktori</strong></td>
+              <td>Dastlabki to'liq konsultatsiya va davo rejasi</td>
+              <td>45 daqiqa</td>
+              <td class="price-tag">300,000 so'm</td>
+            </tr>
+            <tr>
+              <td><strong>Oliy toifali mutaxassis (Kardiolog, Nevrolog, Jarroh)</strong></td>
+              <td>Dastlabki tekshiruv va tayinlov</td>
+              <td>30 daqiqa</td>
+              <td class="price-tag">180,000 so'm</td>
+            </tr>
+            <tr>
+              <td><strong>Pediatr / Bolalar shifokori</strong></td>
+              <td>Bolalar ko'rigi va emlash tavsiyanomasi</td>
+              <td>30 daqiqa</td>
+              <td class="price-tag">150,000 so'm</td>
+            </tr>
+            <tr>
+              <td><strong>Takroriy konsultatsiya (14 kun ichida)</strong></td>
+              <td>Tahlillar tahlili va davoni tuzatish</td>
+              <td>20 daqiqa</td>
+              <td class="price-tag">90,000 so'm</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Table: Laboratoriya -->
+      <h3 style="font-size: 1.35rem; font-weight: 800; color: var(--text-heading); margin-bottom: 18px;">
+        <i class="fa-solid fa-microscope" style="color: var(--accent-red); margin-right: 8px;"></i> Laboratoriya Tahlillari
+      </h3>
+      <div class="price-table-wrapper">
+        <table class="med-price-table">
+          <thead>
+            <tr>
+              <th>Tahlil Nomi</th>
+              <th>Tahlil usuli</th>
+              <th>Natija vaqti</th>
+              <th>Narxi</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Umumiy qon tahlili (26 parametr)</strong></td>
+              <td>Sysmex (Yaponiya) avtomat tahlilatori</td>
+              <td>1 soat</td>
+              <td class="price-tag">65,000 so'm</td>
+            </tr>
+            <tr>
+              <td><strong>Qondagi qand miqdori (Glyukoza)</strong></td>
+              <td>Fermentativ usul</td>
+              <td>30 daqiqa</td>
+              <td class="price-tag">30,000 so'm</td>
+            </tr>
+            <tr>
+              <td><strong>Jigar sinamalari (ALT, AST, Bilirubin)</strong></td>
+              <td>Roche Cobas (Shveysariya)</td>
+              <td>2 soat</td>
+              <td class="price-tag">110,000 so'm</td>
+            </tr>
+            <tr>
+              <td><strong>Gormonlar (Qalqonsimon bez T3, T4, TSH)</strong></td>
+              <td>Xemilyuminessensiya usuli</td>
+              <td>O'sha kuni</td>
+              <td class="price-tag">160,000 so'm</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div style="text-align: center; margin-top: 30px;">
+        <a href="index.html#appointment-section" class="btn btn-primary btn-lg">
+          <i class="fa-regular fa-calendar-check"></i> Xizmatga yozilish
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="index.html" class="brand-logo">
+            <div class="logo-icon-wrap"><i class="fa-solid fa-heart-pulse"></i></div>
+            <div class="logo-text-wrap"><span class="logo-name">ShifoNur <span>Medline</span></span></div>
+          </a>
+          <p class="footer-desc">Bemorlarimiz salomatligi va qulayligi uchun kechayu-kunduz xizmatdamiz.</p>
+        </div>
+        <div class="footer-col">
+          <h4 class="footer-widget-title">Havolalar</h4>
+          <ul class="footer-links-list">
+            <li><a href="index.html"><i class="fa-solid fa-chevron-right"></i> Bosh sahifa</a></li>
+            <li><a href="about.html"><i class="fa-solid fa-chevron-right"></i> Biz haqimizda</a></li>
+            <li><a href="departments.html"><i class="fa-solid fa-chevron-right"></i> Bo'limlar</a></li>
+            <li><a href="doctors.html"><i class="fa-solid fa-chevron-right"></i> Shifokorlar</a></li>
+            <li><a href="contact.html"><i class="fa-solid fa-chevron-right"></i> Bog'lanish</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4 class="footer-widget-title">Bo'limlar</h4>
+          <ul class="footer-links-list">
+            <li><a href="departments.html#cardio"><i class="fa-solid fa-chevron-right"></i> Kardiologiya</a></li>
+            <li><a href="departments.html#surgery"><i class="fa-solid fa-chevron-right"></i> Jarrohlik</a></li>
+            <li><a href="departments.html#neuro"><i class="fa-solid fa-chevron-right"></i> Nevrologiya</a></li>
+            <li><a href="departments.html#diag"><i class="fa-solid fa-chevron-right"></i> Diagnostika</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4 class="footer-widget-title">Aloqa</h4>
+          <div class="footer-contact-items">
+            <div class="footer-contact-item"><i class="fa-solid fa-phone"></i><span>+998 (71) 200-03-03</span></div>
+            <div class="footer-contact-item"><i class="fa-solid fa-location-dot"></i><span>Toshkent, Chilonzor, Bunyodkor 45</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 ShifoNur Medline. Barcha huquqlar himoyalangan.</p>
+      </div>
+    </div>
+  </footer>
+
+  <div class="floating-actions">
+    <a href="#" class="scroll-top-btn"><i class="fa-solid fa-arrow-up"></i></a>
+    <a href="tel:+998712000303" class="floating-call-btn"><i class="fa-solid fa-phone-volume"></i></a>
+  </div>
+
+</body>
+</html>

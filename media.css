@@ -1,0 +1,37 @@
+/* =========================================
+   ALOHIDA MEDIA CSS (MOSLASHUVCHANLIK)
+   ========================================= */
+
+/* 1. Kichik noutbuklar va katta planshetlar uchun (992px gacha) - 3 ta ustun */
+@media (max-width: 992px) {
+    .gallery-container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .grid-item {
+        height: 170px;
+    }
+}
+
+/* 2. Oddiy planshetlar uchun (768px gacha) - 2 ta ustun */
+@media (max-width: 768px) {
+    .gallery-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+        padding: 8px;
+    }
+    .grid-item {
+        height: 160px;
+    }
+}
+
+/* 3. Telefonlar uchun (480px gacha) - 1 ta ustun (ustma-ust) */
+@media (max-width: 480px) {
+    .gallery-container {
+        grid-template-columns: 1fr;
+        gap: 6px;
+        padding: 6px;
+    }
+    .grid-item {
+        height: 210px;
+    }
+}
